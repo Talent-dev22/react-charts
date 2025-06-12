@@ -4,12 +4,14 @@ pipeline{
     stages{
         stage("verification"){
             steps{
-                sh 'helm -version'
+                sh '''
+                helm -version
                 if [ $? == 0]
                   echo "Helm installed"
                 else
                   echo "Helm is not installed. kindly check and install it"
                   exit(1)
+                 '''
             }
         }
         stage("helm deploy"){
